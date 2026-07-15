@@ -1,0 +1,40 @@
+import code1
+
+def menu():
+    print(
+        "\n\t 1 - somar"
+        "\n\t 2 - subtrair"
+        "\n\t 3 - multiplicar"
+        "\n\t 4 - dividir"
+        "\n\t 0 - sair"
+    )
+
+while True:
+    menu()
+    opção = input("Escolha qual é a operação desejada de 0-4: ")
+    
+    if opção == '0':
+        print("Finalizar programa.")
+        break
+        
+    if opção not in ['1', '2', '3', '4']:
+        print("Opção inválida.")
+        continue
+        
+    try:
+        X = float(input("Digite seu primeiro número: "))
+        Y = float(input("Digite seu segundo número: "))
+    except ValueError:
+        print("Entrada inválida. Digite apenas números.")
+        continue
+        
+    if opção == '1':
+        resultado = code1.somar(X, Y)
+    elif opção == '2':
+        resultado = code1.subtrair(X, Y)
+    elif opção == '3':
+        resultado = code1.multiplicar(X, Y)
+    elif opção == '4':
+        resultado = code1.dividir(X, Y)
+        
+    print("O resultado é:", resultado)
