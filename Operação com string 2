@@ -1,0 +1,7 @@
+nome1= input("Digite o primeiro nome: ")
+nome2= input("Digite o nome 2: ")
+print("\n Por ordem alfabética: ")
+if nome1<nome2:
+  print('\t',nome1,'\t',nome2)
+else:
+  print('\t',nome2,'\t',nome1)
