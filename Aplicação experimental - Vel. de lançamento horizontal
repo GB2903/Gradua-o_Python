@@ -1,0 +1,18 @@
+import math
+
+# Constantes
+H = 1.04
+g = 9.81
+theta = math.radians(20)  # converte graus → radianos
+
+# Valores de L
+L_values = [0.21, 0.28, 0.34, 0.39, 0.43, 0.47, 0.51, 0.54]
+
+# Função
+def velocidade(L):
+    return (L / math.cos(theta)) * math.sqrt(g / (2 * (H - L * math.tan(theta))))
+
+# Cálculo
+for L in L_values:
+    V = velocidade(L)
+    print(f"L = {L:.2f} m → V = {V:.4f} m/s")
