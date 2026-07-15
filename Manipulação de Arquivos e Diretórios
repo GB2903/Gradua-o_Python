@@ -1,0 +1,8 @@
+import os
+#os.makedirs('aulaip', exist_ok= True)
+with open('aulaip/aula.txt','w') as f:
+  f.write('Aula de introdução à programação222222/n')
+
+  os.rename('aulaip/aula.txt', 'aulaip/arquivorenomeado.txT')
+
+print('os arquivos da pasta são: ', os.listdir('aulaip'))
