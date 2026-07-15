@@ -1,0 +1,49 @@
+import random
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+def gerar_nomes_aleatorios(quantidade=100):
+    nomes = [
+            "Maria", "João", "Ana", "Pedro", "Juliana", "Carlos", "Fernanda", "Rafael",
+            "Gabriela", "Lucas", "Mariana", "Felipe", "Isabela", "Gustavo", "Carolina",
+            "Daniel", "Beatriz", "Eduardo", "Patrícia", "Thiago"]
+    sobrenomes = [
+            "Silva", "Santos", "Oliveira", "Souza", "Lima", "Pereira", "Ferreira",
+            "Almeida", "Rodrigues", "Gomes", "Martins", "Carvalho", "Ribeiro",
+            "Costa", "Freitas", "Pinto", "Melo", "Barbosa", "Nascimento", "Dias"]
+    nomes_completos = []
+    for _ in range(quantidade):
+        nome_aleatorio = random.choice(nomes)
+        sobrenome_aleatorio = random.choice(sobrenomes)
+        nome_completo = f"{nome_aleatorio} {sobrenome_aleatorio}"
+        nomes_completos.append(nome_completo)
+    return nomes_completos
+
+lista_de_nomes = gerar_nomes_aleatorios()
+id_aluno = np.arange(1, 101)
+idade = np.random.randint(18, 32, size=100)
+prova1 = np.random.uniform(0.00, 10.00, size=100)
+prova2 = np.random.uniform(0.00, 10.00, size=100)
+horas_estudo = np.random.randint(0, 20, size=100)
+
+df = pd.DataFrame({
+    "Alunos": lista_de_nomes,
+    "Nota prova 1": prova1,
+    "Nota prova 2": prova2,
+    "Horas de estudo por aluno": horas_estudo,
+    "Faixa etária": idade
+})
+
+df["Média"] = df[["Nota prova 1", "Nota prova 2"]].mean(axis=1)
+
+media_por_idade = df.groupby('Faixa etária')['Média'].mean().reset_index()
+
+print("\nMédia da nota por idade:")
+print(media_por_idade)
+
+media_por_idade.plot(kind='bar', x='Faixa etária', y='Média', color='skyblue', legend=False)
+plt.title('Média da Nota Final por Idade')
+plt.xlabel('Idade')
+plt.ylabel('Média da Nota Final')
+plt.show()
