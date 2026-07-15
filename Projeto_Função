@@ -1,0 +1,7 @@
+ x = int(input("Digite o número 1: "))
+ y = int(input("Digite o número 2: "))
+
+ def soma(x,y):
+  return x+y
+ resultado= soma(x,y)
+ print("A soma dos números é: ", resultado)
