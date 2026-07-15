@@ -1,0 +1,20 @@
+import random
+import string
+
+def gerar_senha(comprimento):
+        # Combina todos os caracteres possíveis
+    caracteres = string.ascii_letters + string.digits + string.punctuation
+
+    # Verifica se o comprimento é válido (maior que 0)
+    if comprimento <= 0:
+        return "Erro: O comprimento da senha deve ser maior que 0."
+
+    # Gera a senha aleatoriamente
+    senha = ''.join(random.choice(caracteres) for _ in range(comprimento))
+    return senha
+
+# Exemplo de uso da função
+comprimento_senha = 4
+senha_gerada = gerar_senha(comprimento_senha)
+
+print(f"A senha gerada é: {senha_gerada}")
