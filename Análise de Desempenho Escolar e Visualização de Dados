@@ -1,0 +1,30 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+alunos = ["Helder","Davi", "Ana", "Jose","Kaua", "Chico", "Maria", "Gabriel", "Ítalo"]
+prova1 = np.random.randint (0,10, size = len(alunos))
+prova2 = np.random.randint (0,10, size = len(alunos))
+prova3 = np.random.randint (0,10, size = len(alunos))
+
+df = pd.DataFrame({
+    "Alunos": alunos,
+    "Prova1": prova1,
+    "Prova2": prova2,
+    "Prova3": prova3
+})
+
+df["Média"] = df[["Prova1","Prova2","Prova3"]].mean(axis=1)
+
+print("Nota dos alunos; ")
+print(df[["Prova1","Prova2","Prova3", "Média"]].describe())
+
+plt.bar(df["Alunos"], df["Média"], color="blue")
+plt.title("Média dos alunos")
+plt.ylabel("Nota")
+plt.show()
+
+df.set_index("Alunos")[["Prova1","Prova2","Prova3","Média"]].plot(kind= "bar")
+plt.title("Notas dos alunos")
+plt.ylabel("Nota")
+plt.show()
