@@ -1,0 +1,20 @@
+import datetime
+
+def recebe_data(mensagem):
+    while True:
+        try:
+            data_str = input(mensagem)
+            # Converte o texto para o objeto de data
+            data_obj = datetime.datetime.strptime(data_str, "%d/%m/%Y")
+            return data_obj
+        except ValueError:
+            print("Formato inválido! Por favor, digite no formato dd/mm/aaaa (Ex: 15/07/2026).\n")
+
+# Entrada de dados
+data1 = recebe_data('Informe a primeira data no padrão dd/mm/aaaa: ')
+data2 = recebe_data("Informe a segunda data no mesmo formato: ")
+
+# Calcula a diferença absoluta (sempre positiva)
+diferenca = abs((data1 - data2).days)
+
+print("O número de dias entre elas é:", diferenca)
