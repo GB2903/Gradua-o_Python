@@ -1,0 +1,10 @@
+import random
+
+aleatorio = random.randint (1,20)
+numero= int(input("Escolha um número de 1 a 20: "))
+
+if numero == aleatorio:
+ print("Parabéns! Você acertou")
+else:
+  print("Você errou")
+  print("O número é: ", aleatorio)
