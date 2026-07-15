@@ -1,0 +1,15 @@
+ x = float(input("Digite a nota 1: "))
+ y = float(input("Digite a nota 2: "))
+ z = float(input("Digite a nota 3: "))
+
+if resultado >= 7:
+    print("aprovado")
+elif 4 <= resultado < 7:
+    print("final")
+else:
+    print("reprovado")
+
+def media(x,y,z):
+   return (x+y+z)/3
+resultado = media(x,y,z)
+print("Sua média foi: ", resultado)
