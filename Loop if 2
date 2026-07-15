@@ -1,0 +1,6 @@
+nome = input("Coloque seu nome: ")
+if "Barbosa" in nome:
+  print("Bem vindo, irmão! Pode chegar")
+
+if "G" in nome or "g" in nome:
+  print("Olá Gabriel. Seja bem-vindo")
