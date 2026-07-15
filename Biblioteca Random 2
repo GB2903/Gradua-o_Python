@@ -1,0 +1,5 @@
+import random
+
+aleatorio = random.randint (1,20)
+numero= int(input("Escolha um número de 1 a 20: "))
+print("Não desanime. Tenta de novo! Talvez a sorte sorria pra você...")
