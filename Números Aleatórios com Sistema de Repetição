@@ -1,0 +1,37 @@
+import random
+
+def jogar():
+    print("\n=== JOGO DA ADIVINHAÇÃO ===")
+    print("Adivinhe o número para ganhar o prêmio! Escolha um de 0 a 100")
+    
+    # Gera o número secreto
+    numero_secreto = random.randint(0, 100)
+    
+    try:
+        escolha = int(input("Escolha o seu número: "))
+    except ValueError:
+        print("Por favor, digite apenas números inteiros!")
+        return # Reinicia a checagem no loop principal
+
+    if escolha == numero_secreto:
+        print("🎉 Parabéns! Você ganhou uma JBL!")
+    else:
+        print(f"❌ Que pena, o número secreto era {numero_secreto}.")
+        print("Por que não tenta de novo? Se quiser, podemos repetir, agora com desconto...")
+
+while True:
+    jogar()
+    
+    print('\nVamos lá. Caso queira jogar novamente, escolha:')
+    print("1 - Repetir")
+    print("2 - Parar")
+    
+    opcao = input("Escolha seu destino: ")
+    
+    if opcao == '1':
+        continue # Volta para o início do laço e roda o jogo de novo
+    elif opcao == '2':
+        print("Obrigado por jogar! Até a próxima.")
+        break # Encerra o programa
+    else:
+        print("Opção inválida! Escolha 1 para continuar ou 2 para sair.")
