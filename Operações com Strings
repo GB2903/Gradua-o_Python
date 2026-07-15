@@ -1,0 +1,7 @@
+a = "Gabriel"
+b = "Barbosa"
+print(a+" "+b)
+
+minha_string = "Eu sou aluno de Engenharia"
+excl = "!"
+print(minha_string+" "+excl*3)
