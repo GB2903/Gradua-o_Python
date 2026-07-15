@@ -1,0 +1,5 @@
+minha_string = "Computação"
+print(minha_string [3:6])
+print(minha_string [:2])
+nova_str = minha_string [4:7]
+print(nova_str)
