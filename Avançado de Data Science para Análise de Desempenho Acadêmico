@@ -1,0 +1,124 @@
+import random
+
+import pandas as pd
+
+import numpy as np
+
+import matplotlib.pyplot as plt
+
+
+def gerar_nomes_aleatorios(quantidade=100):
+
+    nomes = [
+
+            "Maria", "João", "Ana", "Pedro", "Juliana", "Carlos", "Fernanda", "Rafael",
+
+            "Gabriela", "Lucas", "Mariana", "Felipe", "Isabela", "Gustavo", "Carolina",
+
+            "Daniel", "Beatriz", "Eduardo", "Patrícia", "Thiago"]
+
+
+    sobrenomes = [
+
+            "Silva", "Santos", "Oliveira", "Souza", "Lima", "Pereira", "Ferreira",
+
+            "Almeida", "Rodrigues", "Gomes", "Martins", "Carvalho", "Ribeiro",
+
+            "Costa", "Freitas", "Pinto", "Melo", "Barbosa", "Nascimento", "Dias"]
+    nomes_completos = []
+    for _ in range(quantidade):
+        nome_aleatorio = random.choice(nomes)
+        sobrenome_aleatorio = random.choice(sobrenomes)
+        nome_completo = f"{nome_aleatorio} {sobrenome_aleatorio}"
+        nomes_completos.append(nome_completo)
+
+
+    return nomes_completos
+lista_de_nomes = gerar_nomes_aleatorios()
+for nome in lista_de_nomes:
+    print(nome)
+
+
+id_aluno = np.arange(1, 101)
+idade = np.random.randint(18, 31, size=100)
+prova1 = np.random.uniform(0.00, 10.00, size =100)
+prova2 = np.random.uniform(0.00, 10.00, size = 100)
+horas_estudo= np.random.randint(0, 20, size = 100)
+
+
+df = pd.DataFrame({
+    "Alunos": lista_de_nomes,
+    "Nota prova 1": prova1,
+    "Nota prova 2": prova2,
+    "Horas de estudo por aluno": horas_estudo,
+    "Faixa etária": idade
+ })
+
+
+df["Média"] = df[["Nota prova 1", "Nota prova 2"]].mean(axis=1)
+print("\nNota dos alunos:")
+print(df)
+
+
+media_prova1 = df['Nota prova 1'].mean()
+max_prova1 = df['Nota prova 1'].max()
+min_prova1= df['Nota prova 1'].min()
+print(f"Estatísticas da Nota Prova 1:")
+print(f"Média: {media_prova1:.2f}")
+print(f"Máximo: {max_prova1:.2f}")
+print(f"Mínimo: {min_prova1:.2f}")
+
+
+media_prova2 = df['Nota prova 2'].mean()
+max_prova2 = df['Nota prova 2'].max()
+min_prova2= df['Nota prova 2'].min()
+print(f"Estatísticas da Nota Prova 2:")
+print(f"Média: {media_prova2:.2f}")
+print(f"Máximo: {max_prova2:.2f}")
+print(f"Mínimo: {min_prova2:.2f}")
+
+
+
+faixas = ['18-20', '21-25', '26-30']
+medias_por_faixa_etaria = {}
+for faixa in faixas:
+    if faixa == '18-20':
+        df_faixa = df[(df['Faixa etária'] >= 18) & (df['Faixa etária'] <= 20)]
+    elif faixa == '21-25':
+        df_faixa = df[(df['Faixa etária'] >= 21) & (df['Faixa etária'] <= 25)]
+    elif faixa == '26-30':
+        df_faixa = df[(df['Faixa etária'] >= 26) & (df['Faixa etária'] <= 31)]
+
+
+    print(f"\n Detalhes da Faixa Etária: {faixa} ")
+    if not df_faixa.empty:
+        print(df_faixa[['Alunos', 'Média']])
+        media = df_faixa['Média'].mean()
+        medias_por_faixa_etaria[faixa] = media
+    else:
+        print("Nenhum aluno nesta faixa.")
+        medias_por_faixa_etaria[faixa] = 0
+
+
+print("\nMédia da Nota Final por Faixa Etária:")
+for faixa, media in medias_por_faixa_etaria.items():
+    print(f"Faixa {faixa}: {media:.2f}")
+
+
+media_por_faixa_etaria_series = pd.Series(medias_por_faixa_etaria)
+media_por_faixa_etaria_series.plot(kind='bar', color='skyblue')
+plt.title('Média da Nota Final por Faixa Etária')
+plt.ylabel('Média da Nota Final')
+plt.xlabel('Faixa Etária')
+plt.show()# Agrupa por idade e calcula a média
+media_por_idade = df.groupby('Faixa etária')['Média'].mean().reset_index()
+
+print("\nMédia da nota por idade:")
+print(media_por_idade)
+
+# Gerar o gráfico
+media_por_idade.plot(kind='bar', x='Faixa etária', y='Média', color='skyblue', legend=False)
+plt.title('Média da Nota Final por Idade')
+plt.xlabel('Idade')
+plt.ylabel('Média da Nota Final')
+plt.show()
