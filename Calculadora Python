@@ -1,0 +1,7 @@
+x = float(input("Informe a nota 1: "))
+y = float(input("Informe a nota 2: "))
+z = float(input("Informe a nota 3: "))
+
+media = (x + y + z) / 3
+
+print("A média é: ", media)
